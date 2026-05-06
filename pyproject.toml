@@ -1,0 +1,19 @@
+[project]
+name = "poc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "aiofiles>=25.1.0",
+    "autogen-agentchat>=0.7.5",
+    "autogen-ext[ollama,web-surfer]>=0.7.5",
+    "fastmcp[apps]>=3.2.4",
+    "ipython>=9.13.0",
+    "langchain>=1.2.17",
+    "langchain-anthropic>=1.4.3",
+    "langchain-mcp-adapters>=0.2.2",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.1.10",
+    "mcp[cli]>=1.27.0",
+]
