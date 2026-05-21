@@ -1,0 +1,39 @@
+Titre : Procédure d’Onboarding – Collaborateurs CDI
+
+1. Objectif
+Garantir une intégration structurée et homogène des nouveaux collaborateurs, favoriser leur engagement et réduire le délai de montée en compétences.
+
+2. Étapes clés
+
+2.1 Avant l’arrivée
+- J‑10 : envoi du contrat de travail et des documents administratifs.
+- J‑5 : création des comptes informatiques (messagerie, SSO, accès applicatifs).
+- J‑2 : préparation du poste de travail (PC, badge, accès aux locaux).
+
+2.2 Jour J
+- Accueil par le service RH (30 minutes) : 
+  - présentation de l’entreprise, des valeurs, des principales règles RH,
+  - remise du livret d’accueil.
+- Accueil par le manager (60 minutes) :
+  - visite des locaux,
+  - présentation de l’équipe,
+  - rappel des missions du poste.
+
+2.3 Première semaine
+- prise en main des outils principaux,
+- participation aux réunions d’équipe,
+- point quotidien avec le manager (15 minutes).
+
+2.4 Premier mois
+- définition des objectifs à 3 et 6 mois,
+- formation aux procédures internes,
+- rencontre avec les principaux interlocuteurs (RH, IT, Finance, etc.).
+
+2.5 Bilan d’intégration
+Un entretien de bilan est organisé entre le 2e et le 3e mois pour :
+- recueillir le feedback du collaborateur sur son intégration,
+- identifier d’éventuels besoins complémentaires de formation,
+- ajuster les objectifs si nécessaire.
+
+3. Documentation
+Tous les éléments liés à l’onboarding (checklists, comptes‑rendus d’entretien) sont stockés dans le dossier RH du collaborateur.
