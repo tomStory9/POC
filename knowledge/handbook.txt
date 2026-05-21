@@ -1,0 +1,41 @@
+CNAC - Handbook interne fictif pour le POC CrewAI
+
+1. Politique télétravail
+- Le télétravail est autorisé jusqu'à 3 jours par semaine selon validation du manager.
+- Les équipes infrastructure doivent assurer une astreinte tournante.
+- Les demandes de télétravail exceptionnel doivent être validées à l'avance.
+
+2. Procédure incidents
+- Tout incident critique doit être enregistré dans l'outil ITSM.
+- Une communication doit être envoyée aux parties prenantes dans les 30 minutes.
+- Les incidents P1 doivent être escaladés immédiatement.
+- Un post-mortem est obligatoire pour toute indisponibilité majeure.
+
+3. Standards techniques
+- Les déploiements applicatifs passent par CI/CD.
+- Les secrets ne doivent jamais être stockés en clair dans Git.
+- Les sauvegardes PostgreSQL sont vérifiées chaque semaine.
+- Les changements de production doivent être tracés et planifiés.
+
+4. Sécurité
+- Utiliser un gestionnaire de secrets pour les mots de passe, tokens et clés techniques.
+- Appliquer le principe du moindre privilège sur les accès.
+- Activer l'authentification multifacteur pour les comptes à privilèges.
+- Journaliser les accès aux systèmes sensibles.
+
+5. Exploitation
+- Les alertes doivent être priorisées selon leur impact métier.
+- Les exports de données sensibles doivent être limités et tracés.
+- Les accès d'écriture doivent être séparés des accès de lecture pour les outils d'analyse.
+- Les sauvegardes critiques doivent être testées régulièrement.
+
+6. Bonnes pratiques CI/CD
+- Scanner les dépôts pour détecter des secrets exposés.
+- Restreindre les variables sensibles aux branches et pipelines autorisés.
+- Signer les artefacts critiques si possible.
+- Réviser régulièrement les droits des comptes techniques.
+
+7. Gouvernance
+- Toute modification majeure doit avoir un responsable identifié.
+- Les procédures d'escalade doivent être connues des équipes concernées.
+- Les changements urgents doivent être documentés après exécution.
