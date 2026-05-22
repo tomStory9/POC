@@ -139,6 +139,6 @@ if __name__ == "__main__":
 
     # 2. ChatEngine (mode condense_question) basé sur l’index vectoriel
     print("\n[2] ChatEngine (mode condense_question)")
-    query = "Quelles sont les principales informations du fichier politique.txt ?"
+    query = "affiche moi tout les vecteurs que tu possedes en memoire ?"
     response = chat_engine.chat(query)
     print("ChatEngine :\n", response.response)
