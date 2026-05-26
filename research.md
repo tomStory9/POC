@@ -395,13 +395,13 @@ result = app.invoke({
 })
 ```
 
-Ce type de définition illustre bien l’approche **event‑driven / stateful** de LangGraph, utile lorsque l’on veut un contrôle fort sur l’exécution [10][9].
+Ce type de définition illustre bien l’approche **event‑driven / stateful** de LangGraph, utile lorsque l’on veut un contrôle fort sur l’exécution .
 
 ## CrewAI
 
 ### Présentation
 
-CrewAI est un framework orienté **multi‑agents collaboratifs**, dans lequel on conçoit une **équipe** d’agents spécialisés appelés à coopérer sur une tâche commune [3][12][11]. Sa logique est plus organisationnelle que celle de LangChain : au lieu de raisonner d’abord en termes de chaînes ou de classes, on raisonne en termes de **rôles**, **missions**, **tâches** et **équipes** [3][11].
+CrewAI est un framework orienté **multi‑agents collaboratifs**, dans lequel on conçoit une **équipe** d’agents spécialisés appelés à coopérer sur une tâche commune [3][12][11]. Sa logique est plus organisationnelle que celle de LangChain : au lieu de raisonner d’abord en termes de chaînes ou de classes, on raisonne en termes de **rôles**, **missions**, **tâches** et **équipes** .
 
 ### Utilité principale
 
@@ -410,20 +410,20 @@ CrewAI est particulièrement pertinent pour les scénarios où plusieurs compét
 - synthèse,
 - vérification,
 - rédaction,
-- génération de rapport ou de support métier [12][11][13].
+- génération de rapport ou de support métier .
 
-Dans un assistant RH, il peut servir à séparer un agent de recherche réglementaire, un agent de vérification des politiques internes et un agent de formulation finale [3][12].
+Dans un assistant RH, il peut servir à séparer un agent de recherche réglementaire, un agent de vérification des politiques internes et un agent de formulation finale .
 
 ### Fonctionnalités
 
-- Définition d’**agents** avec rôle, but et contexte [11].
-- Définition de **tasks** assignées à des agents [13].
-- Création d’une **crew** regroupant plusieurs agents et plusieurs tâches [3][12].
-- Possibilité d’utiliser des **flows**, de la mémoire et des outils externes [12][18].
+- Définition d’**agents** avec rôle, but et contexte .
+- Définition de **tasks** assignées à des agents .
+- Création d’une **crew** regroupant plusieurs agents et plusieurs tâches .
+- Possibilité d’utiliser des **flows**, de la mémoire et des outils externes .
 
 ### Spécificité d’implémentation
 
-La grande spécificité de CrewAI est qu’il favorise une organisation des agents et des tâches dans des **fichiers YAML séparés**, ce qui le distingue d’une approche purement orientée classes comme LangChain [12][11][13]. Les configurations d’agents et de tâches sont généralement stockées dans des fichiers `agents.yaml` et `tasks.yaml`, puis reliées à une classe Python qui assemble la crew [12][11]. Cette séparation facilite la lisibilité métier, la maintenance et le réglage fin des rôles sans modifier en profondeur le code applicatif [3][19].
+La grande spécificité de CrewAI est qu’il favorise une organisation des agents et des tâches dans des **fichiers YAML séparés**, ce qui le distingue d’une approche purement orientée classes comme LangChain . Les configurations d’agents et de tâches sont généralement stockées dans des fichiers `agents.yaml` et `tasks.yaml`, puis reliées à une classe Python qui assemble la crew . Cette séparation facilite la lisibilité métier, la maintenance et le réglage fin des rôles sans modifier en profondeur le code applicatif.
 
 ### Exemple : définition d’agents dans `agents.yaml`
 
