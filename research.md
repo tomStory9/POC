@@ -50,7 +50,6 @@
     - [Utilité principale](#utilité-principale)
     - [Fonctionnalités](#fonctionnalités)
     - [Spécificité d’implémentation](#spécificité-dimplémentation)
-    - [Exemple : agent ReAct avec LangChain](#exemple--agent-react-avec-langchain)
     - [Exemple : workflow multi‑turn avec LangGraph](#exemple--workflow-multiturn-avec-langgraph)
   - [CrewAI](#crewai)
     - [Présentation](#présentation-1)
@@ -64,15 +63,11 @@
     - [Présentation](#présentation-2)
     - [Utilité principale](#utilité-principale-2)
     - [Fonctionnalités](#fonctionnalités-2)
-    - [Spécificité d’implémentation](#spécificité-dimplémentation-2)
-    - [Exemple conceptuel : orchestrateur multi‑agent](#exemple-conceptuel--orchestrateur-multiagent)
   - [LlamaIndex](#llamaindex)
     - [Présentation](#présentation-3)
-    - [Utilité principale](#utilité-principale-3)
     - [Fonctionnalités](#fonctionnalités-3)
-    - [Spécificité d’implémentation](#spécificité-dimplémentation-3)
+    - [Spécificité d’implémentation](#spécificité-dimplémentation-2)
     - [Exemple : index vectoriel simple avec LlamaIndex](#exemple--index-vectoriel-simple-avec-llamaindex)
-  - [Comparaison d’usage](#comparaison-dusage)
   - [Références](#références)
 
 ***
@@ -243,7 +238,6 @@ Dans les approches de type **GraphRAG**, les documents sont analysés pour produ
 
 ### Fonctionnement
 Le pipeline inclut généralement l’extraction guidée par LLM, la normalisation des entités, la détection de communautés, la génération de résumés structurés, puis la récupération ciblée au moment de la requête. Cette approche est puissante, mais elle dépend fortement de la qualité des prompts, des stratégies de consolidation et des étapes de validation appliquées au graphe produit. Dans un cadre multi‑agent comme CrewAI, il est possible de répartir ces rôles entre agents spécialisés (extraction, détection de communautés, validation, génération de résumés) afin de limiter les erreurs massives.
-![alt text](image-2.png)
 
 ## Indexation par graphe
 
@@ -290,72 +284,37 @@ Les frameworks agentiques jouent un rôle central dans la mise en œuvre d’ass
 
 ## Vue d’ensemble
 
-| Framework        | Utilité principale                                                       | Fonctionnalités marquantes                                                  | Spécificité d’implémentation                                                                    | Intégration dans d’autres outils                                                 | Dernières évolutions visibles                                              |
-| ---------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| **LangChain**    | Construire des applications et agents LLM généralistes [1][5]            | Agents, tools, prompts, middleware, structured output [1][6][5]             | Approche surtout **programmatique**, orientée classes et objets Python/JS [7][5]                | Très intégré dans l’écosystème RAG, providers et plateformes LLM [2][8]          | Milestones v1.0 annoncés en avril 2026 [1]                                 |
-| **LangGraph**    | Orchestrer des workflows agentiques sous forme de graphes d’états [1][9] | State machine, boucles, transitions, persistance, human‑in‑the‑loop [10][9] | Définition d’un **graphe** de nœuds et de transitions en code [10][9]                           | Souvent utilisé avec LangChain comme moteur d’exécution contrôlé [1][10]         | Intégré à la trajectoire v1.0 de LangChain/LangGraph en 2026 [1]           |
-| **CrewAI**       | Concevoir des équipes d’agents collaboratifs [3][11]                     | Crews, agents, tasks, flows, mémoire, délégation [3][12][13]                | Forte orientation **YAML + fichiers séparés**, avec config des agents et tâches [12][11][13]    | Utilisé avec outils de recherche, RAG, LlamaIndex et pipelines métier [2][12]    | Documentation active et enrichie en continu en 2025–2026 [3][12]           |
-| **Magentic‑One** | Système multi‑agent généraliste pour tâches complexes [4][14]            | Orchestrateur central, agents spécialisés, web, fichiers, code [4][14]      | Architecture pilotée par un **orchestrateur** multi‑turn au‑dessus d’agents spécialisés [4][14] | Principalement via l’écosystème Microsoft/AutoGen [4][14]                        | Présentation officielle Microsoft en 2025, prépublication fin 2024 [4][14] |
-| **LlamaIndex**   | Connecter les données au LLM pour le retrieval et le RAG [15][8]         | Loaders, parsers, indexes, query engines, graph stores [15][8]              | Approche centrée sur les **indices** et moteurs de requête [15][8]                              | Souvent utilisé comme couche RAG sous LangChain, CrewAI ou agents custom [15][8] | Documentation maintenue activement jusqu’en 2026 [15]                      |
+| Framework        | Utilité principale                                                | Fonctionnalités marquantes                                          | Spécificité d’implémentation                                                            | Intégration dans d’autres outils                                         | Dernières évolutions visibles                                      |
+| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| **LangChain**    | Construire des applications et agents LLM généralistes            | Agents, tools, prompts, middleware, structured output               | Approche surtout **programmatique**, orientée classes et objets Python/JS               | Très intégré dans l’écosystème RAG, providers et plateformes LLM         | Milestones v1.0 annoncés en avril 2026                             |
+| **LangGraph**    | Orchestrer des workflows agentiques sous forme de graphes d’états | State machine, boucles, transitions, persistance, human‑in‑the‑loop | Définition d’un **graphe** de nœuds et de transitions en code                           | Souvent utilisé avec LangChain comme moteur d’exécution contrôlé         | Intégré à la trajectoire v1.0 de LangChain/LangGraph en 2026       |
+| **CrewAI**       | Concevoir des équipes d’agents collaboratifs                      | Crews, agents, tasks, flows, mémoire, délégation                    | Forte orientation **YAML + fichiers séparés**, avec config des agents et tâches         | Utilisé avec outils de recherche, RAG, LlamaIndex et pipelines métier    | Documentation active et enrichie en continu en 2025–2026           |
+| **Magentic‑One** | Système multi‑agent généraliste pour tâches complexes             | Orchestrateur central, agents spécialisés, web, fichiers, code      | Architecture pilotée par un **orchestrateur** multi‑turn au‑dessus d’agents spécialisés | Principalement via l’écosystème Microsoft/AutoGen                        | Présentation officielle Microsoft en 2025, prépublication fin 2024 |
+| **LlamaIndex**   | Connecter les données au LLM pour le retrieval et le RAG          | Loaders, parsers, indexes, query engines, graph stores              | Approche centrée sur les **indices** et moteurs de requête                              | Souvent utilisé comme couche RAG sous LangChain, CrewAI ou agents custom | Documentation maintenue activement jusqu’en 2026                   |
 
 ## LangChain et LangGraph
 
 ### Présentation
 
-**LangChain** est un framework généraliste destiné à construire des applications à base de LLM, en particulier des agents capables d’utiliser des outils, de suivre un prompt structuré et de gérer des interactions multi‑étapes [1][5]. Il sert de couche d’abstraction pour relier modèles, outils, prompts, middlewares et sorties structurées dans une même application [1][6].
+**LangChain** est un framework généraliste destiné à construire des applications à base de LLM, en particulier des agents capables d’utiliser des outils, de suivre un prompt structuré et de gérer des interactions multi‑étapes . Il sert de couche d’abstraction pour relier modèles, outils, prompts, middlewares et sorties structurées dans une même application .
 
-**LangGraph** complète cette logique en fournissant un moteur d’exécution orienté **graphe d’états**, où chaque nœud représente une étape de traitement et chaque arête une transition conditionnelle [10][9]. Il est particulièrement adapté aux workflows agentiques nécessitant des boucles, de la persistance d’état, une reprise après erreur ou une validation humaine intermédiaire [10][9].
+**LangGraph** complète cette logique en fournissant un moteur d’exécution orienté **graphe d’états**, où chaque nœud représente une étape de traitement et chaque arête une transition conditionnelle . Il est particulièrement adapté aux workflows agentiques nécessitant des boucles, de la persistance d’état, une reprise après erreur ou une validation humaine intermédiaire .
 
 ### Utilité principale
 
-- **LangChain** convient bien aux assistants outillés, aux systèmes ReAct, aux chaînes de traitement simples ou aux applications LLM modulaires [1][5].
-- **LangGraph** est plus adapté lorsqu’il faut contrôler explicitement le déroulement d’un agent, modéliser un workflow déterministe ou semi‑agentique, ou construire un système **multi‑turn** persistant [16][10][9].
+- **LangChain** convient bien aux assistants outillés, aux systèmes ReAct, aux chaînes de traitement simples ou aux applications LLM modulaires .
+- **LangGraph** est plus adapté lorsqu’il faut contrôler explicitement le déroulement d’un agent, modéliser un workflow déterministe ou semi‑agentique, ou construire un système **multi‑turn** persistant .
 
 ### Fonctionnalités
 
-- Abstraction de modèles et de fournisseurs LLM [1][6].
-- Encapsulation des outils (*tools*) et appels externes [5].
-- Structured output, middleware, agents et observabilité [1][6].
-- Graphes d’états avec transitions, cycles et points de contrôle dans LangGraph [10][9].
+- Abstraction de modèles et de fournisseurs LLM .
+- Encapsulation des outils (*tools*) et appels externes .
+- Structured output, middleware, agents et observabilité .
+- Graphes d’états avec transitions, cycles et points de contrôle dans LangGraph .
 
 ### Spécificité d’implémentation
 
-LangChain se programme principalement en **Python ou JavaScript**, avec des objets, classes, fonctions et exécuteurs d’agents [7][5]. LangGraph, de son côté, oblige à penser l’architecture comme un **graphe** : on définit un état partagé, des nœuds de calcul, puis les conditions de passage d’un nœud à l’autre [10][9]. Cela donne généralement plus de contrôle qu’un agent autonome classique, mais demande une modélisation plus explicite [16][9].
-
-### Exemple : agent ReAct avec LangChain
-
-```python
-from langchain.agents import AgentExecutor, create_react_agent
-from langchain_core.prompts import PromptTemplate
-
-prompt = PromptTemplate.from_template("""
-Answer the following questions as best you can.
-You have access to the following tools:
-
-{tools}
-
-Use the following format:
-Question: the input question you must answer
-Thought: you should always think about what to do
-Action: the action to take, should be one of [{tool_names}]
-Action Input: the input to the action
-Observation: the result of the action
-... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final answer to the original input question
-
-Question: {input}
-Thought:{agent_scratchpad}
-""")
-
-agent = create_react_agent(llm, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
-result = agent_executor.invoke({"input": "Quels sont les congés parentaux applicables ?"})
-print(result)
-```
-
-Cet exemple suit le pattern **ReAct** (*Reasoning + Acting*), dans lequel l’agent alterne raisonnement intermédiaire, appel d’outil et observation avant de produire une réponse finale [5][17].
+LangChain se programme principalement en **Python ou JavaScript**, avec des objets, classes, fonctions et exécuteurs d’agents. LangGraph, de son côté, oblige à penser l’architecture comme un **graphe** : on définit un état partagé, des nœuds de calcul, puis les conditions de passage d’un nœud à l’autre . Cela donne généralement plus de contrôle qu’un agent autonome classique, mais demande une modélisation plus explicite .
 
 ### Exemple : workflow multi‑turn avec LangGraph
 
@@ -401,7 +360,7 @@ Ce type de définition illustre bien l’approche **event‑driven / stateful** 
 
 ### Présentation
 
-CrewAI est un framework orienté **multi‑agents collaboratifs**, dans lequel on conçoit une **équipe** d’agents spécialisés appelés à coopérer sur une tâche commune [3][12][11]. Sa logique est plus organisationnelle que celle de LangChain : au lieu de raisonner d’abord en termes de chaînes ou de classes, on raisonne en termes de **rôles**, **missions**, **tâches** et **équipes** .
+CrewAI est un framework orienté **multi‑agents collaboratifs**, dans lequel on conçoit une **équipe** d’agents spécialisés appelés à coopérer sur une tâche commune . Sa logique est plus organisationnelle que celle de LangChain : au lieu de raisonner d’abord en termes de chaînes ou de classes, on raisonne en termes de **rôles**, **missions**, **tâches** et **équipes** .
 
 ### Utilité principale
 
@@ -412,7 +371,7 @@ CrewAI est particulièrement pertinent pour les scénarios où plusieurs compét
 - rédaction,
 - génération de rapport ou de support métier .
 
-Dans un assistant RH, il peut servir à séparer un agent de recherche réglementaire, un agent de vérification des politiques internes et un agent de formulation finale .
+
 
 ### Fonctionnalités
 
@@ -506,13 +465,13 @@ class HrAssistantCrew:
         )
 ```
 
-Cette approche rend CrewAI particulièrement lisible pour des architectures où l’on souhaite représenter explicitement une **équipe** d’agents et leur répartition de responsabilités [12][11][13].
+Cette approche rend CrewAI particulièrement lisible pour des architectures où l’on souhaite représenter explicitement une **équipe** d’agents et leur répartition de responsabilités .
 
 ## Magentic‑One
 
 ### Présentation
 
-Magentic‑One est un système multi‑agent généraliste proposé par Microsoft pour résoudre des tâches complexes impliquant plusieurs tours d’interaction, des outils variés et une capacité de replanification [4][14]. Il repose sur un **orchestrateur central** qui coordonne plusieurs agents spécialisés selon l’état courant de la tâche [4][14].
+Magentic‑One est un système multi‑agent généraliste proposé par Microsoft pour résoudre des tâches complexes impliquant plusieurs tours d’interaction, des outils variés et une capacité de replanification . Il repose sur un **orchestrateur central** qui coordonne plusieurs agents spécialisés selon l’état courant de la tâche .
 
 ### Utilité principale
 
@@ -521,59 +480,28 @@ Magentic‑One est pensé pour des tâches ouvertes, longues et multi‑étapes,
 - consultation de fichiers,
 - analyse,
 - écriture et exécution de code,
-- synthèse à partir de plusieurs sources [4][14].
+- synthèse à partir de plusieurs sources .
 
-Dans un projet d’assistant RH, il représente surtout une **référence architecturale** pour penser un système où un orchestrateur pilote plusieurs sous‑agents métiers ou techniques [4].
 
 ### Fonctionnalités
 
-- Orchestrateur central chargé de planifier, superviser et replanifier [4][14].
-- Agents spécialisés pour le web, les fichiers et le code [4].
-- Fonctionnement **multi‑turn**, où les agents échangent des résultats intermédiaires avant convergence [4][14].
+- Orchestrateur central chargé de planifier, superviser et replanifier .
+- Agents spécialisés pour le web, les fichiers et le code .
+- Fonctionnement **multi‑turn**, où les agents échangent des résultats intermédiaires avant convergence .
 
-### Spécificité d’implémentation
-
-Magentic‑One n’est pas seulement une bibliothèque légère ; c’est plutôt une **architecture de référence** bâtie dans l’écosystème Microsoft autour d’AutoGen [4][14]. Son intérêt dans un état de l’art est surtout conceptuel : il montre comment structurer un système agentique avec un planificateur global et des agents spécialisés coopérants [4].
-
-### Exemple conceptuel : orchestrateur multi‑agent
-
-```python
-task = "Analyser une demande RH complexe et produire une réponse fiable"
-
-orchestrator.plan(task)
-
-while not orchestrator.is_complete():
-    next_agent = orchestrator.select_agent()
-    observation = next_agent.execute(orchestrator.current_subtask())
-    orchestrator.update_state(observation)
-
-final_answer = orchestrator.summarize()
-```
-
-Ce pseudo‑code illustre la logique **multi‑turn** de Magentic‑One : planification, délégation, observation, mise à jour du contexte, puis replanification éventuelle [4][14].
 
 ## LlamaIndex
 
 ### Présentation
 
-LlamaIndex est un framework centré sur la **connexion des données au LLM**, avec un accent particulier sur l’ingestion documentaire, l’indexation et le retrieval [15][8]. Là où LangChain et CrewAI s’intéressent surtout à l’orchestration d’agents ou de workflows, LlamaIndex se concentre sur la construction d’une couche **RAG** robuste et interrogeable [15][8].
-
-### Utilité principale
-
-LlamaIndex est particulièrement utile lorsque le problème principal consiste à :
-- charger des documents,
-- les découper en unités exploitables,
-- les indexer,
-- puis interroger ce corpus à travers un moteur de recherche sémantique ou structuré [15][8].
-
-Dans un assistant RH, cela correspond directement à l’intégration de politiques internes, règlements, notes de service, FAQ et corpus métiers [15].
+LlamaIndex est un framework centré sur la **connexion des données au LLM**, avec un accent particulier sur l’ingestion documentaire, l’indexation et le retrieval . Là où LangChain et CrewAI s’intéressent surtout à l’orchestration d’agents ou de workflows, LlamaIndex se concentre sur la construction d’une couche **RAG** robuste et interrogeable .
 
 ### Fonctionnalités
 
-- Loaders pour sources variées [15].
-- Parsers et découpage en *nodes* [15][8].
-- Indices vectoriels, hiérarchiques ou orientés graphe [15][8].
-- Query engines et outils de synthèse de réponse [15][8].
+- Loaders pour sources variées .
+- Parsers et découpage en *nodes* .
+- Indices vectoriels, hiérarchiques ou orientés graphe .
+- Query engines et outils de synthèse de réponse .
 
 ### Spécificité d’implémentation
 
@@ -581,9 +509,9 @@ LlamaIndex s’utilise souvent en chaîne :
 1. chargement des données,
 2. parsing,
 3. création d’un index,
-4. exposition d’un `query_engine` ou `retriever` [15][8].
+4. exposition d’un `query_engine` ou `retriever` .
 
-Il peut être utilisé seul pour du RAG, ou servir de **couche documentaire** sous un agent LangChain, LangGraph ou CrewAI [15][8].
+Il peut être utilisé seul pour du RAG, ou servir de **couche documentaire** sous un agent LangChain, LangGraph ou CrewAI .
 
 ### Exemple : index vectoriel simple avec LlamaIndex
 
@@ -598,18 +526,6 @@ response = query_engine.query("Quelle est la procédure de demande de congés ?"
 
 print(response)
 ```
-
-Cet exemple montre la logique centrale de LlamaIndex : transformer un corpus en index interrogeable par le LLM.
-
-## Comparaison d’usage
-
-| Cas d’usage                                       | Framework le plus naturel | Justification                                                |
-| ------------------------------------------------- | ------------------------- | ------------------------------------------------------------ |
-| Agent simple avec outils                          | **LangChain** [5][17]     | Rapide à mettre en place, bien adapté au pattern ReAct       |
-| Workflow contrôlé, état persistant, multi‑turn    | **LangGraph** [10][9]     | Représentation explicite des états et transitions            |
-| Équipe d’agents spécialisée par rôle              | **CrewAI** [3][12][11]    | Bonne séparation entre agents, tâches et crew                |
-| Référence MAS avancée / orchestrateur généraliste | **Magentic‑One** [4][14]  | Intéressant comme modèle architectural                       |
-| Couche documentaire / retrieval / RAG             | **LlamaIndex** [15][8]    | Très fort pour l’ingestion, les indices et les query engines |
 
 ## Références
 -- [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
