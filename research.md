@@ -28,23 +28,25 @@
     - [Avantages et limites](#avantages-et-limites-1)
   - [Agent multi-turn et Magentic-One](#agent-multi-turn-et-magentic-one)
     - [Magentic-One](#magentic-one)
-    - [Avantages et limites](#avantages-et-limites-2)
-    - [Avantages et limites](#avantages-et-limites-3)
     - [Avantages et inconvénients](#avantages-et-inconvénients-1)
   - [Récupération d’information](#récupération-dinformation)
   - [Base vectorielle](#base-vectorielle)
     - [Fonctionnement](#fonctionnement-2)
     - [Avantages et inconvénients](#avantages-et-inconvénients-2)
-  - [Indexation par graphe](#indexation-par-graphe)
+  - [Indexation vectoriel avec LLM](#indexation-vectoriel-avec-llm)
     - [Fonctionnement](#fonctionnement-3)
-    - [Outils et bibliothèques](#outils-et-bibliothèques-1)
-    - [Avantages et inconvénients](#avantages-et-inconvénients-3)
-  - [Indexation par graphe avec LLM](#indexation-par-graphe-avec-llm)
+  - [Indexation par graphe](#indexation-par-graphe)
     - [Fonctionnement](#fonctionnement-4)
+    - [Outils et bibliothèques](#outils-et-bibliothèques-1)
   - [Retrieval](#retrieval)
   - [Classic and dense retrieval](#classic-and-dense-retrieval)
+    - [Avantages et inconvénients](#avantages-et-inconvénients-3)
   - [4. MCP, outils et gestion du contexte](#4-mcp-outils-et-gestion-du-contexte)
-  - [5. Approches expérimentales, bonnes pratiques et limites](#5-approches-expérimentales-bonnes-pratiques-et-limites)
+  - [5 FRAMEWORK](#5-framework)
+    - [LANGCHAIN  LANGGRAPH](#langchain--langgraph)
+    - [CREWAI](#crewai)
+    - [MAGENTIC ONE](#magentic-one-1)
+    - [LLAMAINDEX](#llamaindex)
   - [Références](#références)
 
 ***
@@ -161,21 +163,10 @@ Un agent **multi-turn** est conçu pour fonctionner sur plusieurs cycles d’int
 Magentic-One, le système multi-agent de Microsoft, illustre bien cette logique à grande échelle : il compose plusieurs agents spécialisés qui se partagent le contexte, échangent des résultats intermédiaires et convergent progressivement vers une solution. L’orchestrateur planifie, suit l’avancement, puis replanifie si nécessaire pour récupérer des erreurs, tandis que les agents spécialisés exécutent des tâches comme la navigation web, la lecture de fichiers ou l’écriture et l’exécution de code.
 
 Cette architecture met en évidence une orchestration fine des tours d’interaction, non seulement entre l’utilisateur et le système, mais aussi entre les agents eux-mêmes. Elle est adaptée aux tâches cognitives complexes, où la division du travail améliore à la fois la robustesse et la scalabilité.
-
-### Avantages et limites
-
-- **Avantages** : meilleure continuité contextuelle, correction progressive, bonne adéquation aux tâches interactives, scalabilité par multi-agents.
-- **Limites** : dérive conversationnelle, accumulation d’erreurs, gestion complexe de la mémoire et des priorités contextuelles, coût élevé dans les systèmes multi-agents.
-
-### Avantages et limites
-
-- **Avantages** : simplicité conceptuelle, bonne auditabilité, intégration naturelle avec les outils externes, explicite dans les flux multi-turn.
-- **Limites** : dépendance à la qualité du feedback, risque de boucles improductives, nécessité de critères d’arrêt robustes, complexité de coordination dans un système multi-agent.
 ### Avantages et inconvénients
 
 - **Avantages** : simplicité conceptuelle, bonne auditabilité, intégration naturelle avec les outils externes, explicite dans les flux multi‑turn.
 - **Inconvénients** : dépendance à la qualité du feedback, risque de boucles improductives, nécessité de critères d’arrêt robustes, complexité de coordination dans un système multi‑agent.
-
 ---
 
 ## Récupération d’information
@@ -206,6 +197,17 @@ Le pipeline typique comprend le découpage des documents en chunks, la générat
 
 ---
 
+
+## Indexation vectoriel avec LLM
+
+L’indexation par graphe avec LLM consiste à déléguer au modèle une partie de l’extraction des entités, relations, thèmes ou communautés à partir de documents bruts. Le LLM ne sert plus uniquement à répondre aux questions ; il participe directement à la construction de la structure de recherche.
+
+Dans les approches de type **GraphRAG**, les documents sont analysés pour produire un graphe d’entités et de relations, puis des résumés hiérarchiques sont générés pour des ensembles ou communautés de nœuds. Cette organisation permet ensuite de répondre soit localement par voisinage, soit globalement par synthèse de sous‑graphes, ce qui améliore les performances sur des questions qui exigent une compréhension structurée du corpus. L’orchestrateur LLM ou les agents multi‑turn peuvent alors naviguer dans ce graphe, en alternant consultation de voisinage, requête de résumés et PAF local.
+
+### Fonctionnement
+Le pipeline inclut généralement l’extraction guidée par LLM, la normalisation des entités, la détection de communautés, la génération de résumés structurés, puis la récupération ciblée au moment de la requête. Cette approche est puissante, mais elle dépend fortement de la qualité des prompts, des stratégies de consolidation et des étapes de validation appliquées au graphe produit. Dans un cadre multi‑agent comme CrewAI, il est possible de répartir ces rôles entre agents spécialisés (extraction, détection de communautés, validation, génération de résumés) afin de limiter les erreurs massives.
+![alt text](image-2.png)
+
 ## Indexation par graphe
 
 L’indexation par graphe représente l’information sous la forme d’entités reliées par des relations explicites, ce qui permet de raisonner non seulement sur le contenu des nœuds, mais aussi sur la structure du réseau informationnel. Cette représentation est particulièrement adaptée aux domaines où la connaissance dépend de liens multi‑hop, de dépendances sémantiques ou de structures métier complexes.
@@ -220,23 +222,6 @@ Le pipeline classique comprend l’extraction d’entités, l’identification d
 
 Neo4j est l’une des références les plus visibles pour le stockage et l’exploration de graphes de connaissances dans ce contexte. LlamaIndex propose également des intégrations avec des graph stores, tandis que des systèmes proches de GraphRAG fournissent une méthodologie complète combinant extraction, structuration en communautés et synthèse hiérarchique. CrewAI peut intégrer ces graphes dans des workflows, par exemple en associant un agent spécialisé à la traversée du graphe et un autre à la génération de résumé.
 
-### Avantages et inconvénients
-
-- **Avantages** : conservation explicite des relations, meilleure explicabilité, pertinence élevée sur les requêtes multi‑hop et les corpus complexes.
-- **Inconvénients** : coût élevé de construction, complexité de maintenance, sensibilité aux erreurs d’extraction d’entités et de relations.
-
----
-
-## Indexation par graphe avec LLM
-
-L’indexation par graphe avec LLM consiste à déléguer au modèle une partie de l’extraction des entités, relations, thèmes ou communautés à partir de documents bruts. Le LLM ne sert plus uniquement à répondre aux questions ; il participe directement à la construction de la structure de recherche.
-
-Dans les approches de type **GraphRAG**, les documents sont analysés pour produire un graphe d’entités et de relations, puis des résumés hiérarchiques sont générés pour des ensembles ou communautés de nœuds. Cette organisation permet ensuite de répondre soit localement par voisinage, soit globalement par synthèse de sous‑graphes, ce qui améliore les performances sur des questions qui exigent une compréhension structurée du corpus. L’orchestrateur LLM ou les agents multi‑turn peuvent alors naviguer dans ce graphe, en alternant consultation de voisinage, requête de résumés et PAF local.
-
-### Fonctionnement
-
-Le pipeline inclut généralement l’extraction guidée par LLM, la normalisation des entités, la détection de communautés, la génération de résumés structurés, puis la récupération ciblée au moment de la requête. Cette approche est puissante, mais elle dépend fortement de la qualité des prompts, des stratégies de consolidation et des étapes de validation appliquées au graphe produit. Dans un cadre multi‑agent comme CrewAI, il est possible de répartir ces rôles entre agents spécialisés (extraction, détection de communautés, validation, génération de résumés) afin de limiter les erreurs massives.
-![alt text](image-2.png)
 ## Retrieval
 
 Le retrieval désigne l’ensemble des mécanismes permettant d’identifier les documents ou fragments les plus pertinents pour une requête donnée avant la génération de réponse. Dans les systèmes LLM modernes, il sert à limiter les hallucinations, à améliorer la fraîcheur informationnelle et à spécialiser les réponses sur un corpus donné.
@@ -252,12 +237,28 @@ Le **dense retrieval** s’appuie au contraire sur des embeddings, ce qui lui pe
 
 Les systèmes hybrides, qui combinent recherche sparse et dense puis appliquent éventuellement un reranking, obtiennent souvent les meilleurs résultats car ils exploitent la complémentarité entre signal lexical et signal sémantique. Dans un cadre multi‑agent, il est possible de distribuer ces modes de retrieval entre agents spécialisés (par exemple un agent de consulting lexical, un agent de consulting sémantique, un agent de fusion) afin de répartir la charge de décision.
 
+
+### Avantages et inconvénients
+
+- **Avantages** : conservation explicite des relations, meilleure explicabilité, pertinence élevée sur les requêtes multi‑hop et les corpus complexes.
+- **Inconvénients** : coût élevé de construction, complexité de maintenance, sensibilité aux erreurs d’extraction d’entités et de relations.
+
+---
+
 ## 4. MCP, outils et gestion du contexte
 
-## 5. Approches expérimentales, bonnes pratiques et limites
+## 5 FRAMEWORK
+
+### LANGCHAIN  LANGGRAPH
+
+### CREWAI
+
+### MAGENTIC ONE
+
+### LLAMAINDEX
 
 ## Références
-- [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
+-- [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
 - [CLAUDE SDK FOR PYTHON](https://github.com/anthropics/anthropic-sdk-python)
 - [MCP PROTOCOL SDK PYTHON](https://github.com/modelcontextprotocol/python-sdk)
 - [FASTMCP](https://gofastmcp.com/servers/server)
@@ -270,5 +271,8 @@ Les systèmes hybrides, qui combinent recherche sparse et dense puis appliquent 
 - [Towards the Next Generation of Agent Systems: From RAG to Agentic AI](https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf)
 - [Graph Indexing: Tree + Delta >= Graph](https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf)
 - [Introduction to RAG](https://developers.llamaindex.ai/python/framework/understanding/rag/)
+- [Following the Autoregressive Nature of LLM Embeddings via Compression and Alignment](https://aclanthology.org/2025.emnlp-main.639.pdf)
+- [AUTOREG CODE](https://github.com/TrustedLLM/AutoRegEmbed)
+- [COOKBOOK CREWAI + LLAMAINDEX](https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/)
 ![schema](img/image.png)
-![alt text](img/image.png)nan
+![alt text](img/image.png)
