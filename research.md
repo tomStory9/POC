@@ -528,7 +528,7 @@ print(response)
 ```
 
 ## Références
--- [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
+- [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
 - [CLAUDE SDK FOR PYTHON](https://github.com/anthropics/anthropic-sdk-python)
 - [MCP PROTOCOL SDK PYTHON](https://github.com/modelcontextprotocol/python-sdk)
 - [FASTMCP](https://gofastmcp.com/servers/server)
