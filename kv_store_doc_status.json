@@ -1,0 +1,21 @@
+{
+  "doc-f8bbe69d0fde62ddfe2d3b2bbffd556e": {
+    "status": "processed",
+    "error_msg": "",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-e70954187b271651efe2c1addcd62cac"
+    ],
+    "content_summary": "Titre : Guide de Conduite des Entretiens Annuels – Fictia\n\n1. Objet\n\nCe document a pour objectif de décrire le processus d’entretien annuel et de fournir un guide pratique aux managers et aux collaborateurs.\n\n2. Périmètre\n\nTous les collaborateurs en ...",
+    "content_length": 3267,
+    "created_at": "2026-05-27T15:12:46.845706+00:00",
+    "updated_at": "2026-05-27T15:13:08+00:00",
+    "file_path": "entretien.txt",
+    "track_id": "insert_20260527_171246_955e5386",
+    "metadata": {
+      "processing_start_time": 1779894766,
+      "processing_end_time": 1779894788
+    },
+    "multimodal_processed": true
+  }
+}

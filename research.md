@@ -41,7 +41,6 @@
     - [Outils et bibliothèques](#outils-et-bibliothèques-1)
   - [Retrieval](#retrieval)
   - [Classic and dense retrieval](#classic-and-dense-retrieval)
-    - [Avantages et inconvénients](#avantages-et-inconvénients-3)
   - [4. MCP, outils et gestion du contexte](#4-mcp-outils-et-gestion-du-contexte)
 - [5. Frameworks pour systèmes agentiques](#5-frameworks-pour-systèmes-agentiques)
   - [Vue d’ensemble](#vue-densemble-1)
@@ -68,6 +67,8 @@
     - [Fonctionnalités](#fonctionnalités-3)
     - [Spécificité d’implémentation](#spécificité-dimplémentation-2)
     - [Exemple : index vectoriel simple avec LlamaIndex](#exemple--index-vectoriel-simple-avec-llamaindex)
+  - [Outils RAG Annexe](#outils-rag-annexe)
+    - [MINER U, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm](#miner-u-convertisseur-de-fichier-de-travail--pdf--pptx--docx--xlsx-image-en-format-markdown-ou-json-comprehensible-pour-llm)
   - [Références](#références)
 
 ***
@@ -264,15 +265,10 @@ Le cœur du problème n’est pas seulement de récupérer « quelque chose », 
 
 Le retrieval **classique**, souvent appelé **sparse retrieval**, repose sur des méthodes lexicales telles que BM25 ou TF‑IDF, qui classent les documents en fonction de la présence, de la fréquence et de la rareté des termes. Il reste extrêmement performant lorsque les requêtes contiennent des termes discriminants, des noms propres, des identifiants techniques ou des expressions exactes.
 
-Le **dense retrieval** s’appuie au contraire sur des embeddings, ce qui lui permet de retrouver des documents proches du sens de la requête même lorsque les mots exacts diffèrent. Cette propriété le rend particulièrement adapté aux formulations naturelles, aux synonymies et aux questions exploratoires, mais moins fiable lorsque la précision terminologique est critique. Des systèmes comme **CrewAI** ou des orchestrateurs LLM peuvent combiner ces deux signaux en exposant des pipelines de recherche hybrides, où une première passe BM25 affine ensuite une passe dense, ou inversement.
+Le **dense retrieval** s’appuie au contraire sur des embeddings, ce qui lui permet de retrouver des documents proches du sens de la requête même lorsque les mots exacts diffèrent. Cette propriété le rend particulièrement adapté aux formulations naturelles, aux synonymies et aux questions exploratoires, mais moins fiable lorsque la précision terminologique est critique.
 
 Les systèmes hybrides, qui combinent recherche sparse et dense puis appliquent éventuellement un reranking, obtiennent souvent les meilleurs résultats car ils exploitent la complémentarité entre signal lexical et signal sémantique. Dans un cadre multi‑agent, il est possible de distribuer ces modes de retrieval entre agents spécialisés (par exemple un agent de consulting lexical, un agent de consulting sémantique, un agent de fusion) afin de répartir la charge de décision.
 
-
-### Avantages et inconvénients
-
-- **Avantages** : conservation explicite des relations, meilleure explicabilité, pertinence élevée sur les requêtes multi‑hop et les corpus complexes.
-- **Inconvénients** : coût élevé de construction, complexité de maintenance, sensibilité aux erreurs d’extraction d’entités et de relations.
 
 ---
 
@@ -280,7 +276,7 @@ Les systèmes hybrides, qui combinent recherche sparse et dense puis appliquent 
 
 # 5. Frameworks pour systèmes agentiques
 
-Les frameworks agentiques jouent un rôle central dans la mise en œuvre d’assistants basés sur des LLM, car ils fournissent les abstractions nécessaires pour orchestrer les modèles, les outils, la mémoire, le retrieval et, dans certains cas, plusieurs agents spécialisés [1][2]. Dans un projet d’assistant RH, leur choix influence directement la modularité de l’architecture, la facilité d’industrialisation, la traçabilité des traitements et la capacité à gérer des scénarios simples ou multi‑étapes [1][3][4].
+Les frameworks agentiques jouent un rôle central dans la mise en œuvre d’assistants basés sur des LLM, car ils fournissent les abstractions nécessaires pour orchestrer les modèles, les outils, la mémoire, le retrieval et, dans certains cas, plusieurs agents spécialisés. Dans un projet d’assistant RH, leur choix influence directement la modularité de l’architecture, la facilité d’industrialisation, la traçabilité des traitements et la capacité à gérer des scénarios simples ou multi‑étapes.
 
 ## Vue d’ensemble
 
@@ -526,6 +522,11 @@ response = query_engine.query("Quelle est la procédure de demande de congés ?"
 
 print(response)
 ```
+## Outils RAG Annexe 
+![alt text]({7309EB7F-3323-471D-9DEE-C76C461F45FF}.png)
+### MINER U, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm
+![alt text](image-3.png)
+![alt text]({E6D4B811-B3BB-4450-8C2A-C8479A34D18D}.png)
 
 ## Références
 - [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
@@ -544,5 +545,6 @@ print(response)
 - [Following the Autoregressive Nature of LLM Embeddings via Compression and Alignment](https://aclanthology.org/2025.emnlp-main.639.pdf)
 - [AUTOREG CODE](https://github.com/TrustedLLM/AutoRegEmbed)
 - [COOKBOOK CREWAI + LLAMAINDEX](https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/)
-![schema](img/image.png)
-![alt text](img/image.png)
+- [rag-anything](https://github.com/hkuds/rag-anything)
+- [Mineru](https://github.com/opendatalab/MinerU)
+- [RAG or Learning? Understanding the Limits of LLM Adaptation under Continuous Knowledge Drift in the Real World](https://arxiv.org/pdf/2604.05096)

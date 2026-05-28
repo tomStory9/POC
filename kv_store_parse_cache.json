@@ -1,0 +1,754 @@
+{
+  "79fc2d24870b46d99d8b963dd3faea21": {
+    "content_list": [
+      {
+        "type": "text",
+        "text": "Titre : Guide de Conduite des Entretiens Annuels – Fictia",
+        "bbox": [
+          126,
+          92,
+          512,
+          105
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "1. Objet",
+        "text_level": 2,
+        "bbox": [
+          126,
+          117,
+          184,
+          131
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "Ce document a pour objectif de décrire le processus d’entretien annuel et de fournir un guide pratique aux managers et aux collaborateurs.",
+        "bbox": [
+          126,
+          135,
+          840,
+          162
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "2. Périmètre",
+        "text_level": 2,
+        "bbox": [
+          126,
+          174,
+          230,
+          187
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "Tous les collaborateurs en CDI ou CDD de plus de 6 mois d’ancienneté sont concernés par un entretien annuel.",
+        "bbox": [
+          124,
+          192,
+          835,
+          219
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "3. Calendrier",
+        "text_level": 2,
+        "bbox": [
+          126,
+          231,
+          216,
+          244
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- Janvier : communication du calendrier et ouverture de la saisie des auto‑évaluations.",
+        "bbox": [
+          124,
+          249,
+          704,
+          263
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- Février – Mars : entretiens individuels entre managers et collaborateurs.",
+        "bbox": [
+          124,
+          267,
+          618,
+          280
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- Avril : consolidation des évaluations par la Direction et arbitrages salariaux.",
+        "bbox": [
+          124,
+          285,
+          633,
+          299
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "4. Préparation de l’entretien",
+        "text_level": 2,
+        "bbox": [
+          124,
+          309,
+          334,
+          323
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "4.1 Côté collaborateur",
+        "text_level": 2,
+        "bbox": [
+          126,
+          326,
+          294,
+          341
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "Le collaborateur remplit son auto‑évaluation dans l’outil RH en couvrant les axes suivants :",
+        "bbox": [
+          124,
+          344,
+          752,
+          359
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- atteinte des objectifs de l’année N‑1,",
+        "bbox": [
+          124,
+          363,
+          406,
+          376
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- réalisations majeures,",
+        "bbox": [
+          126,
+          382,
+          287,
+          395
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- difficultés rencontrées,",
+        "bbox": [
+          126,
+          399,
+          305,
+          412
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- compétences développées,",
+        "bbox": [
+          126,
+          417,
+          342,
+          431
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- souhaits d’évolution (poste, responsabilités, mobilité).",
+        "bbox": [
+          124,
+          434,
+          532,
+          449
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "4.2 Côté manager",
+        "text_level": 2,
+        "bbox": [
+          124,
+          458,
+          265,
+          473
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "Le manager prépare l’entretien en :",
+        "bbox": [
+          126,
+          476,
+          379,
+          491
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- relisant les objectifs fixés l’année précédente,",
+        "bbox": [
+          124,
+          494,
+          478,
+          508
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- analysant les résultats (KPI, projets, feedbacks clients),",
+        "bbox": [
+          124,
+          513,
+          500,
+          527
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- identifiant les points forts et axes de progrès,",
+        "bbox": [
+          124,
+          531,
+          433,
+          545
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- préparant des exemples concrets.",
+        "bbox": [
+          126,
+          549,
+          364,
+          562
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "5. Déroulé recommandé de l’entretien",
+        "text_level": 2,
+        "bbox": [
+          124,
+          573,
+          420,
+          587
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "5.1 Introduction (5–10 minutes)",
+        "text_level": 2,
+        "bbox": [
+          126,
+          590,
+          349,
+          605
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- rappeler l’objectif de l’entretien,",
+        "bbox": [
+          124,
+          609,
+          371,
+          623
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- installer un climat de confiance,",
+        "bbox": [
+          126,
+          627,
+          344,
+          640
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- préciser le temps prévu (45–60 minutes).",
+        "bbox": [
+          124,
+          644,
+          431,
+          659
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "5.2 Bilan de l’année écoulée (20–30 minutes)",
+        "text_level": 2,
+        "bbox": [
+          124,
+          669,
+          468,
+          684
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- discuter des objectifs un par un,",
+        "bbox": [
+          124,
+          687,
+          344,
+          701
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- illustrer avec des faits et des exemples,",
+        "bbox": [
+          124,
+          705,
+          383,
+          719
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- encourager le collaborateur à s’exprimer sur son ressenti.",
+        "bbox": [
+          124,
+          722,
+          527,
+          737
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "5.3 Compétences et comportement",
+        "text_level": 2,
+        "bbox": [
+          126,
+          747,
+          371,
+          762
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- évaluer les compétences techniques (savoirs, savoir‑faire),",
+        "bbox": [
+          124,
+          765,
+          544,
+          780
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- évaluer les compétences comportementales (communication, coopération, initiative),",
+        "bbox": [
+          124,
+          784,
+          724,
+          797
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- mettre en lumière les points forts,",
+        "bbox": [
+          126,
+          802,
+          364,
+          815
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- identifier clairement les axes de progrès.",
+        "bbox": [
+          124,
+          819,
+          406,
+          833
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "5.4 Projet professionnel et formation",
+        "text_level": 2,
+        "bbox": [
+          126,
+          844,
+          368,
+          858
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- discuter des souhaits d’évolution,",
+        "bbox": [
+          124,
+          862,
+          378,
+          876
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- évoquer les opportunités possibles (mobilité interne, projets transverses),",
+        "bbox": [
+          124,
+          879,
+          640,
+          894
+        ],
+        "page_idx": 0
+      },
+      {
+        "type": "text",
+        "text": "\\- définir un plan de développement (formations, mentorat, missions spécifiques).",
+        "bbox": [
+          126,
+          92,
+          685,
+          107
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "5.5 Synthèse et conclusion",
+        "bbox": [
+          126,
+          117,
+          310,
+          131
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- reformuler les points clés,",
+        "bbox": [
+          126,
+          135,
+          315,
+          149
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- valider les objectifs principaux pour l’année à venir,",
+        "bbox": [
+          126,
+          152,
+          505,
+          167
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- rappeler les prochaines étapes (validation dans l’outil, éventuelles décisions de rémunération).",
+        "bbox": [
+          126,
+          170,
+          806,
+          185
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "6. Grille de notation (exemple)",
+        "bbox": [
+          126,
+          195,
+          329,
+          210
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "Chaque critère peut être noté sur une échelle de 1 à 5 :",
+        "bbox": [
+          126,
+          212,
+          527,
+          227
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "1 – Insuffisant",
+        "bbox": [
+          126,
+          231,
+          230,
+          244
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "2 – Partiellement conforme aux attentes",
+        "bbox": [
+          126,
+          249,
+          396,
+          262
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "3 – Conforme aux attentes",
+        "bbox": [
+          126,
+          267,
+          310,
+          280
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "4 – Au‑delà des attentes",
+        "bbox": [
+          126,
+          285,
+          314,
+          298
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "5 – Exceptionnel",
+        "bbox": [
+          126,
+          302,
+          248,
+          316
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "7. Traçabilité",
+        "bbox": [
+          126,
+          326,
+          230,
+          341
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "L’entretien doit être formalisé dans l’outil RH sous 7 jours calendaires.",
+        "bbox": [
+          126,
+          344,
+          628,
+          359
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "Le collaborateur peut ajouter un commentaire final avant validation.",
+        "bbox": [
+          126,
+          363,
+          571,
+          376
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "L’évaluation signée est ensuite conservée dans le dossier RH.",
+        "bbox": [
+          126,
+          381,
+          561,
+          395
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "8. Confidentialité",
+        "bbox": [
+          126,
+          405,
+          248,
+          419
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "Le contenu de l’entretien est confidentiel et ne peut être partagé qu’avec :",
+        "bbox": [
+          126,
+          423,
+          645,
+          438
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- le manager N+2,",
+        "bbox": [
+          126,
+          441,
+          248,
+          455
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- la Direction des Ressources Humaines,",
+        "bbox": [
+          126,
+          458,
+          391,
+          473
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- la Direction Générale en cas de besoin spécifique.",
+        "bbox": [
+          126,
+          476,
+          489,
+          491
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "9. Différend sur l’évaluation",
+        "bbox": [
+          126,
+          502,
+          344,
+          516
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "En cas de désaccord majeur sur l’évaluation, le collaborateur peut :",
+        "bbox": [
+          126,
+          520,
+          593,
+          533
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- demander un second entretien de clarification avec son manager,",
+        "bbox": [
+          126,
+          538,
+          559,
+          552
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "\\- solliciter un recours auprès du service RH.",
+        "bbox": [
+          126,
+          556,
+          423,
+          569
+        ],
+        "page_idx": 1
+      },
+      {
+        "type": "text",
+        "text": "Le recours est documenté et une réponse écrite est fournie sous 15 jours.",
+        "bbox": [
+          126,
+          573,
+          626,
+          587
+        ],
+        "page_idx": 1
+      }
+    ],
+    "doc_id": "doc-f8bbe69d0fde62ddfe2d3b2bbffd556e",
+    "mtime": 1779353153.332083,
+    "parse_config": {
+      "parser": "mineru",
+      "parse_method": "auto"
+    },
+    "cached_at": 1779894766.839889,
+    "cache_version": "1.0",
+    "create_time": 1779894766,
+    "update_time": 1779894766,
+    "_id": "79fc2d24870b46d99d8b963dd3faea21"
+  }
+}
