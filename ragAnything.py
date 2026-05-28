@@ -7,7 +7,7 @@ from lightrag.utils import EmbeddingFunc
 
 async def main():
     # Set up API configuration
-    api_key = "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"
+    api_key = ""
     base_url = "your-base-url"  # Optional
 
     # Create RAGAnything configuration
