@@ -1,4 +1,3 @@
-
 # État de l’art de l’IA agentique dans un projet d’assistant RH
 
 > Une synthèse structurée sur les fondements, l’architecture et les bonnes pratiques de l’IA agentique et systeme MAS appliquée à un assistant RH.
@@ -32,7 +31,6 @@
   - [Récupération d’information](#récupération-dinformation)
   - [Base vectorielle](#base-vectorielle)
     - [Fonctionnement](#fonctionnement-2)
-    - [Avantages et inconvénients](#avantages-et-inconvénients-2)
   - [AUTOREGEMBED : embeddings améliorés, autoregression naturelle des LLM, compression et alignement](#autoregembed--embeddings-améliorés-autoregression-naturelle-des-llm-compression-et-alignement)
   - [Indexation vectoriel avec LLM](#indexation-vectoriel-avec-llm)
     - [Fonctionnement](#fonctionnement-3)
@@ -53,7 +51,6 @@
   - [CrewAI](#crewai)
     - [Présentation](#présentation-1)
     - [Utilité principale](#utilité-principale-1)
-    - [Fonctionnalités](#fonctionnalités-1)
     - [Spécificité d’implémentation](#spécificité-dimplémentation-1)
     - [Exemple : définition d’agents dans `agents.yaml`](#exemple--définition-dagents-dans-agentsyaml)
     - [Exemple : définition de tâches dans `tasks.yaml`](#exemple--définition-de-tâches-dans-tasksyaml)
@@ -61,18 +58,25 @@
   - [Magentic‑One](#magenticone)
     - [Présentation](#présentation-2)
     - [Utilité principale](#utilité-principale-2)
-    - [Fonctionnalités](#fonctionnalités-2)
+    - [Fonctionnalités](#fonctionnalités-1)
   - [LlamaIndex](#llamaindex)
     - [Présentation](#présentation-3)
-    - [Fonctionnalités](#fonctionnalités-3)
+    - [Fonctionnalités](#fonctionnalités-2)
     - [Spécificité d’implémentation](#spécificité-dimplémentation-2)
     - [Exemple : index vectoriel simple avec LlamaIndex](#exemple--index-vectoriel-simple-avec-llamaindex)
+  - [Haystack](#haystack)
+    - [Présentation](#présentation-4)
+    - [Pipeline Haystack](#pipeline-haystack)
+    - [DocumentStore et intégrations](#documentstore-et-intégrations)
+    - [Exemple de pipeline RAG avec DocumentStore](#exemple-de-pipeline-rag-avec-documentstore)
   - [Outils RAG Annexe](#outils-rag-annexe)
     - [MINERU, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm](#mineru-convertisseur-de-fichier-de-travail--pdf--pptx--docx--xlsx-image-en-format-markdown-ou-json-comprehensible-pour-llm)
   - [Références](#références)
 
 ***
+
 ## 1. Contexte et problématique
+
 L’IA agentique s’impose comme une évolution des assistants conversationnels classiques dans le domaine des ressources humaines, en réponse aux limites des chatbots actuels face aux processus complexes et contextualisés.
 
 Aujourd’hui, un simple chatbot RH ne suffit plus pour traiter les problématiques réelles : il reste souvent cantonné à des scénarios scriptés, gère mal le contexte, et peine avec les demandes ambiguës ou spécifiques à chaque organisation. Avec la montée des approches agentiques, l’objectif devient de concevoir un véritable assistant RH capable de traiter des questions complexes propres à un organisme donné, en s’appuyant à la fois sur les documents internes, des capacités de raisonnement avancé, un contexte métier riche, l’orchestration d’outils informatiques et, lorsque c’est pertinent, des recherches sur internet.
@@ -141,9 +145,12 @@ Dans le document présenté par Francesco Bacchin, cette logique est appliquée 
 
 Le prompt est le suivant :
 
-```To enhance clarity and eliminate ambiguities inherent in natural language, do not use natural language. Consider employing more structured and concise forms of communication for your responses. Suitable formats include structured data, JSON, XML or code. Choose the most appropriate format based on the nature of the query and the information you need to convey. Remember to be concise and accurate.```
+```text
+To enhance clarity and eliminate ambiguities inherent in natural language, do not use natural language. Consider employing more structured and concise forms of communication for your responses. Suitable formats include structured data, JSON, XML or code. Choose the most appropriate format based on the nature of the query and the information you need to convey. Remember to be concise and accurate.
+```
 
 ![alt text]({3CCE9C45-CF55-4D84-B743-9B33B5C0A5E0}.png)
+
 ### Outils et frameworks
 
 Les frameworks les plus utilisés pour ce type d’architecture sont LangChain, LlamaIndex,et Magentic-One qui permettent d’encapsuler des outils, de gérer l’état et d’orchestrer les interactions entre mémoire, retrieval et appels externes. En production, ces briques sont souvent complétées par des systèmes de monitoring et de guardrails pour limiter les hallucinations et les boucles d’exécution inutiles.
@@ -161,9 +168,7 @@ CrewAI est particulièrement adapté aux scénarios de génération de contenu, 
 
 ## Planification par plans antérieurs
 
-Une évolution importante consiste à réutiliser des plans antérieurs pour guider la résolution de nouvelles tâches. Cette approche repose sur l’idée qu’un agent peut capitaliser sur des trajectoires déjà observées, sous forme d’exemples, de schémas de décision abstraits ou de workflows validés, afin de réduire le coût de planification et d’améliorer la cohérence.
-
-Dans ce type de système, les plans précédents peuvent être stockés comme traces d’exécution, graphes de décision ou workflows partiellement réutilisables. Lorsqu’une nouvelle requête arrive, l’agent recherche un plan analogue, l’adapte au nouveau contexte, puis ne replanifie que les parties qui diffèrent. Cette logique est particulièrement pertinente dans les environnements professionnels où les tâches sont récurrentes, comme le support IT, la gestion de tickets ou l’analyse documentaire spécialisée.
+Une évolution importante consiste à réutiliser des plans antérieurs pour guider la résolution de nouvelles tâches. Cette approche repose sur l’idée qu’un agent peut capitaliser sur des trajectoires déjà observées, sous forme d’exemples, de schémas de décision abstraits ou de workflows validés, afin de réduire le coût de planification et d’améliorer la cohérence.... Dans ce type de système, les plans précédents peuvent être stockés comme traces d’exécution, graphes de décision ou workflows partiellement réutilisables. Lorsqu’une nouvelle requête arrive, l’agent recherche un plan analogue, l’adapte au nouveau contexte, puis ne replanifie que les parties qui diffèrent. Cette logique est particulièrement pertinente dans les environnements professionnels où les tâches sont récurrentes, comme le support IT, la gestion de tickets ou l’analyse documentaire spécialisée.
 
 ### Fonctionnement
 
@@ -190,7 +195,6 @@ Cette architecture met en évidence une orchestration fine des tours d’interac
 - **Avantages** : simplicité conceptuelle, bonne auditabilité, intégration naturelle avec les outils externes, explicite dans les flux multi‑turn.
 - **Inconvénients** : dépendance à la qualité du feedback, risque de boucles improductives, nécessité de critères d’arrêt robustes, complexité de coordination dans un système multi‑agent.
 ---
-
 ## Récupération d’information
 
 La récupération d’information constitue le socle des architectures RAG et de nombreux agents outillés, car elle permet d’ancrer la génération dans des connaissances externes au modèle. Dans un système agentique, elle intervient soit comme simple étape de recherche documentaire, soit comme composant central autour duquel s’organise toute la planification.
@@ -209,10 +213,7 @@ Cette technique permet de capturer la proximité sémantique au‑delà des corr
 
 ### Fonctionnement
 
-Le pipeline typique comprend le découpage des documents en chunks, la génération d’embeddings par LLM, l’insertion dans un index ANN, puis la recherche des voisins les plus proches lors de la requête. Des structures comme HNSW sont souvent utilisées pour obtenir une bonne approximation de la recherche de plus proches voisins à grande échelle. Dans un système multi‑agent orchestré par CrewAI ou un orchestrateur LLM, la base vectorielle peut être consultée par plusieurs agents spécialisés (analyste, rédacteur, vérificateur) qui partagent ensuite le contexte identifié.
-
-
-### Avantages et inconvénients
+Le pipeline typique comprend le découpage des documents en chunks, la génération d’embeddings par LLM, l’insertion dans un index ANN, puis la recherche des voisins les plus proches lors de la requête. Des structures comme HNSW sont souvent utilisées pour obtenir une bonne approximation de la recherche de plus proches voisins à grande échelle. Dans un système multi‑agent orchestré par CrewAI ou un orchestrateur LLM, la base vectorielle peut être consultée par plusieurs agents spécialisés (analyste, rédacteur, vérificateur) qui partagent ensuite le contexte identifié.... ### Avantages et inconvénients
 
 - **Avantages** : bonne capture de la similarité sémantique, efficacité sur les questions ouvertes, intégration naturelle avec les pipelines RAG et multi‑agents.
 - **Inconvénients** : perte possible de précision lexicale, dépendance forte à la qualité des embeddings et du chunking, besoin fréquent de reranking ou d’hybridation.
@@ -260,7 +261,6 @@ Le retrieval désigne l’ensemble des mécanismes permettant d’identifier les
 
 Le cœur du problème n’est pas seulement de récupérer « quelque chose », mais de récupérer les éléments les plus utiles au bon niveau de granularité. Un retrieval de mauvaise qualité entraîne mécaniquement une génération de mauvaise qualité, même avec un modèle très performant. Dans un orchestrateur LLM ou un système multi‑agent, le retrieval est souvent partagé : plusieurs agents peuvent utiliser le même contexte extrait, ce qui améliore la cohérence des réponses entre sous‑tâches.
 
-
 ## Classic and dense retrieval
 
 Le retrieval **classique**, souvent appelé **sparse retrieval**, repose sur des méthodes lexicales telles que BM25 ou TF‑IDF, qui classent les documents en fonction de la présence, de la fréquence et de la rareté des termes. Il reste extrêmement performant lorsque les requêtes contiennent des termes discriminants, des noms propres, des identifiants techniques ou des expressions exactes.
@@ -268,7 +268,6 @@ Le retrieval **classique**, souvent appelé **sparse retrieval**, repose sur des
 Le **dense retrieval** s’appuie au contraire sur des embeddings, ce qui lui permet de retrouver des documents proches du sens de la requête même lorsque les mots exacts diffèrent. Cette propriété le rend particulièrement adapté aux formulations naturelles, aux synonymies et aux questions exploratoires, mais moins fiable lorsque la précision terminologique est critique.
 
 Les systèmes hybrides, qui combinent recherche sparse et dense puis appliquent éventuellement un reranking, obtiennent souvent les meilleurs résultats car ils exploitent la complémentarité entre signal lexical et signal sémantique. Dans un cadre multi‑agent, il est possible de distribuer ces modes de retrieval entre agents spécialisés (par exemple un agent de consulting lexical, un agent de consulting sémantique, un agent de fusion) afin de répartir la charge de décision.
-
 
 ---
 
@@ -280,13 +279,14 @@ Les frameworks agentiques jouent un rôle central dans la mise en œuvre d’ass
 
 ## Vue d’ensemble
 
-| Framework        | Utilité principale                                                | Fonctionnalités marquantes                                          | Spécificité d’implémentation                                                            | Intégration dans d’autres outils                                         | Dernières évolutions visibles                                      |
-| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| **LangChain**    | Construire des applications et agents LLM généralistes            | Agents, tools, prompts, middleware, structured output               | Approche surtout **programmatique**, orientée classes et objets Python/JS               | Très intégré dans l’écosystème RAG, providers et plateformes LLM         | Milestones v1.0 annoncés en avril 2026                             |
-| **LangGraph**    | Orchestrer des workflows agentiques sous forme de graphes d’états | State machine, boucles, transitions, persistance, human‑in‑the‑loop | Définition d’un **graphe** de nœuds et de transitions en code                           | Souvent utilisé avec LangChain comme moteur d’exécution contrôlé         | v1.0 en 2026                                                       |
-| **CrewAI**       | Concevoir des équipes d’agents collaboratifs                      | Crews, agents, tasks, flows, mémoire, délégation                    | Forte orientation **YAML + fichiers séparés**, avec config des agents et tâches         | Utilisé avec outils de recherche, RAG, LlamaIndex et pipelines métier    | Documentation active et enrichie en continu en 2025–2026           |
-| **Magentic‑One** | Système multi‑agent généraliste pour tâches complexes             | Orchestrateur central, agents spécialisés, web, fichiers, code      | Architecture pilotée par un **orchestrateur** multi‑turn au‑dessus d’agents spécialisés | Principalement via l’écosystème Microsoft/AutoGen                        | Présentation officielle Microsoft en 2025, prépublication fin 2024 |
-| **LlamaIndex**   | Connecter les données au LLM pour le retrieval et le RAG          | Loaders, parsers, indexes, query engines, graph stores              | Approche centrée sur les **indices** et moteurs de requête                              | Souvent utilisé comme couche RAG sous LangChain, CrewAI ou agents custom | Documentation maintenue activement                                 |
+| Framework        | Utilité principale                                                | Fonctionnalités marquantes                                          | Spécificité d’implémentation                                                            | Intégration dans d’autres outils                                          | Dernières évolutions visibles                                      |
+| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **LangChain**    | Construire des applications et agents LLM généralistes            | Agents, tools, prompts, middleware, structured output               | Approche surtout **programmatique**, orientée classes et objets Python/JS               | Très intégré dans l’écosystème RAG, providers et plateformes LLM          | Milestones v1.0 annoncés en avril 2026                             |
+| **LangGraph**    | Orchestrer des workflows agentiques sous forme de graphes d’états | State machine, boucles, transitions, persistance, human‑in‑the‑loop | Définition d’un **graphe** de nœuds et de transitions en code                           | Souvent utilisé avec LangChain comme moteur d’exécution contrôlé          | v1.0 en 2026                                                       |
+| **CrewAI**       | Concevoir des équipes d’agents collaboratifs                      | Crews, agents, tasks, flows, mémoire, délégation                    | Forte orientation **YAML + fichiers séparés**, avec config des agents et tâches         | Utilisé avec outils de recherche, RAG, LlamaIndex et pipelines métier     | Documentation active et enrichie en continu en 2025–2026           |
+| **Magentic‑One** | Système multi‑agent généraliste pour tâches complexes             | Orchestrateur central, agents spécialisés, web, fichiers, code      | Architecture pilotée par un **orchestrateur** multi‑turn au‑dessus d’agents spécialisés | Principalement via l’écosystème Microsoft/AutoGen                         | Présentation officielle Microsoft en 2025, prépublication fin 2024 |
+| **LlamaIndex**   | Connecter les données au LLM pour le retrieval et le RAG          | Loaders, parsers, indexes, query engines, graph stores              | Approche centrée sur les **indices** et moteurs de requête                              | Souvent utilisé comme couche RAG sous LangChain, CrewAI ou agents custom  | Documentation maintenue activement                                 |
+| **Haystack**     | Construire des systèmes RAG et search orientés production         | Pipelines explicites, DocumentStore, retrievers, générateurs        | Architecture **pipeline-first** centrée sur la chaîne documentaire                      | Intégrable dans des architectures plus larges (agents, services back‑end) | Documentation et écosystème maintenus par deepset                  |
 
 ## LangChain et LangGraph
 
@@ -365,11 +365,7 @@ CrewAI est particulièrement pertinent pour les scénarios où plusieurs compét
 - synthèse,
 - vérification,
 - rédaction,
-- génération de rapport ou de support métier .
-
-
-
-### Fonctionnalités
+- génération de rapport ou de support métier .... ### Fonctionnalités
 
 - Définition d’**agents** avec rôle, but et contexte .
 - Définition de **tasks** assignées à des agents .
@@ -478,13 +474,11 @@ Magentic‑One est pensé pour des tâches ouvertes, longues et multi‑étapes,
 - écriture et exécution de code,
 - synthèse à partir de plusieurs sources .
 
-
 ### Fonctionnalités
 
 - Orchestrateur central chargé de planifier, superviser et replanifier .
 - Agents spécialisés pour le web, les fichiers et le code .
 - Fonctionnement **multi‑turn**, où les agents échangent des résultats intermédiaires avant convergence .
-
 
 ## LlamaIndex
 
@@ -522,13 +516,111 @@ response = query_engine.query("Quelle est la procédure de demande de congés ?"
 
 print(response)
 ```
+
+## Haystack
+
+### Présentation
+
+Haystack est un framework open source maintenu par deepset, conçu pour construire des applications LLM de type recherche, question‑réponse et RAG sur des corpus privés . Il se distingue par son architecture **pipeline‑first**, une abstraction claire des composants (DocumentStore, retrievers, rankers, générateurs) et un écosystème d’intégrations orienté production.
+
+Dans un projet d’assistant RH, Haystack est particulièrement pertinent lorsqu’on souhaite industrialiser un flux documentaire complet : ingestion de documents internes, indexation, retrieval, éventuel reranking et génération de réponse fondée sur ces sources . Cette approche structurée le rend complémentaire d’architectures agentiques plus libres, en servant de « brique RAG » stable et testable .
+
+### Pipeline Haystack
+
+Le cœur de Haystack repose sur la notion de **pipeline**, c’est‑à‑dire un graphe d’exécution composé de nœuds (composants) reliés par des connexions explicites . Chaque nœud reçoit des entrées, effectue une opération (embedding, retrieval, génération, etc.) puis transmet des sorties au nœud suivant, ce qui permet de définir une chaîne de traitement end‑to‑end lisible .
+
+
+L’intérêt principal de cette architecture est la **traçabilité** : chaque étape peut être observée, testée et remplacée de manière indépendante sans casser le reste du système . Cette propriété est particulièrement utile dans un contexte d’entreprise où l’on doit faire évoluer le comportement du système par itérations contrôlées.
+
+### DocumentStore et intégrations
+
+Le **DocumentStore** est la brique de stockage et d’indexation documentaire de Haystack . Il sert à conserver les documents, leurs chunks, leurs métadonnées et, le cas échéant, leurs embeddings pour le retrieval dense ou hybride.
+
+Haystack propose plusieurs intégrations selon les besoins :
+- des backends de recherche textuelle (par exemple pour du retrieval lexical type BM25),
+- des backends vectoriels pour le retrieval dense et sémantique,
+- des modes hybrides combinant signal lexical et signal vectoriel,
+
+### Exemple de pipeline RAG avec DocumentStore
+
+L’exemple suivant illustre un pipeline RAG simple avec Haystack, utilisant un `InMemoryDocumentStore`, un retriever basé sur embeddings et un générateur LLM.
+
+```python
+from haystack import Pipeline
+from haystack.document_stores.in_memory import InMemoryDocumentStore
+from haystack.components.embedders import SentenceTransformersDocumentEmbedder, SentenceTransformersTextEmbedder
+from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
+from haystack.components.builders import PromptBuilder
+from haystack.components.generators import OpenAIGenerator
+from haystack.dataclasses import Document
+
+# 1. DocumentStore en mémoire
+document_store = InMemoryDocumentStore(embedding_similarity_function="cosine")
+
+# 2. Documents RH d’exemple
+docs = [
+    Document(content="La politique de télétravail autorise deux jours par semaine."),
+    Document(content="Les congés doivent être validés par le manager avant dépôt."),
+]
+
+# 3. Embedding et indexation des documents
+doc_embedder = SentenceTransformersDocumentEmbedder(model="sentence-transformers/all-MiniLM-L6-v2")
+doc_embedder.warm_up()
+embedded_docs = doc_embedder.run(docs)["documents"]
+document_store.write_documents(embedded_docs)
+
+# 4. Composants de retrieval et de génération
+text_embedder = SentenceTransformersTextEmbedder(model="sentence-transformers/all-MiniLM-L6-v2")
+retriever = InMemoryEmbeddingRetriever(document_store=document_store)
+
+prompt_template = """
+Réponds uniquement à partir du contexte.
+
+Contexte:
+{% for document in documents %}
+- {{ document.content }}
+{% endfor %}
+
+Question: {{ question }}
+Réponse:
+"""
+
+prompt_builder = PromptBuilder(template=prompt_template)
+generator = OpenAIGenerator(api_key="YOUR_OPENAI_API_KEY")
+
+# 5. Définition du pipeline
+pipeline = Pipeline()
+pipeline.add_component("embedder", text_embedder)
+pipeline.add_component("retriever", retriever)
+pipeline.add_component("prompt_builder", prompt_builder)
+pipeline.add_component("generator", generator)
+
+pipeline.connect("embedder.embedding", "retriever.query_embedding")
+pipeline.connect("retriever.documents", "prompt_builder.documents")
+pipeline.connect("prompt_builder.prompt", "generator.prompt")
+
+# 6. Exécution : question utilisateur
+question = "Quelle est la règle sur le télétravail ?"
+result = pipeline.run({
+    "embedder": {"text": question},
+    "prompt_builder": {"question": question}
+})
+
+print(result["generator"]["replies"])
+```
+
+Ce pipeline met en évidence la séparation des responsabilités : le DocumentStore gère la persistance et la recherche, le retriever détermine quels passages sont pertinents, et le générateur produit la réponse finale à partir du contexte, ce qui facilite la maintenance et l’évolution du système dans une architecture plus large .
+
 ## Outils RAG Annexe 
-![alt text]({7309EB7F-3323-471D-9DEE-C76C461F45FF}.png)
+
+
+
 ### MINERU, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm
 
 MINERU est un outil de parsing documentaire destiné à convertir des fichiers de travail hétérogènes notamment PDF, DOCX, PPTX, XLSX et images en représentations structurées et interprétables par des modèles de langage, telles que Markdown et JSON. Son objectif principal est de produire une version normalisée du contenu en supprimant les éléments non essentiels à l’analyse, comme les en-têtes, pieds de page, numéros de page ou certaines redondances de mise en forme, tout en conservant les éléments sémantiquement utiles tels que les titres, paragraphes, listes, tableaux, figures, légendes et équations. Dans une chaîne de traitement orientée LLM, cette approche permet de réduire le volume de tokens lors de l’indexation et de l’embedding, tout en améliorant la qualité de l’extraction, de la recherche et de la restitution, grâce à une structuration plus fidèle de l’information source.
-
-Sur le plan fonctionnel, MINERU repose sur une logique de parsing documentaire qui combine analyse de mise en page, reconstitution de l’ordre de lecture, extraction des blocs de contenu et conversion vers des formats machine-readable. Le système identifie les différentes zones d’un document texte, tableaux, images, légendes, notes, formules puis réorganise ces éléments selon un ordre de lecture exploitable, y compris dans des mises en page complexes ou multicolonnes. Il peut également détecter les PDF scannés ou dégradés et activer automatiquement une phase d’OCR, avec prise en charge d’un grand nombre de langues, afin d’assurer une extraction solide même lorsque le texte n’est pas directement accessible.
+![alt text](image-4.png)
+MINERU repose sur une logique de parsing documentaire qui combine analyse de mise en page, reconstitution de l’ordre de lecture, extraction des blocs de contenu et conversion vers des formats machine-readable. Le système identifie les différentes zones d’un document (texte, tableaux, images, légendes, notes, formules) puis réorganise ces éléments selon un ordre de lecture exploitable, y compris dans des mises en page complexes ou multicolonnes. Il peut également détecter les PDF scannés ou dégradés et activer automatiquement une phase d’OCR, avec prise en charge d’un grand nombre de langues, afin d’assurer une extraction solide même lorsque le texte n’est pas directement accessible.
+![alt text]({7309EB7F-3323-471D-9DEE-C76C461F45FF}.png)
 ```bash
 uv venv mineru --python 3.12
 source mineru/bin/activate
@@ -539,48 +631,29 @@ uv pip install -U "magic-pdf[full]"
 mineru -p ./documents/rapport.pdf -o ./output --dump-content-list
 ```
 
-Mineru est aussi accessible en ligne à l'adresse suivante : <https://mineru.net/>
+Mineru est aussi accessible en ligne à l'adresse suivante : https://mineru.net/
 ![alt text](image-3.png)
 ![alt text]({E6D4B811-B3BB-4450-8C2A-C8479A34D18D}.png)
 
 ## Références
-- Palo Alto Networks. (2024). *What Is Model Context Protocol (MCP)?* [https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
 
-- Anthropic. (2025). *Claude SDK for Python*. GitHub. [https://github.com/anthropics/anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python)
-
-- Model Context Protocol. (2025). *MCP Protocol Python SDK*. GitHub. [https://github.com/modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
-
-- FastMCP. (2025). *FastMCP Server Documentation*. [https://gofastmcp.com/servers/server](https://gofastmcp.com/servers/server)
-
-- Alex Casella Wayne Wang. (2025). *Performant LLM Agentic Framework for Conversational AI*. arXiv. [https://arxiv.org/pdf/2503.06410](https://arxiv.org/pdf/2503.06410)
-
-- Microsoft Research. (2024). *Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks*. [https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/](https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/)
-
-- GetStream. (2025). *Top 10 AI Orchestration Tools*. [https://getstream.io/blog/best-ai-orchestration-tools/](https://getstream.io/blog/best-ai-orchestration-tools/)
-
-- Bacchin, F. (2024). *The Rise of LLM-powered Agents: Reinventing Workflow Automation with Agentic AI*. Università di Padova. [https://thesis.unipd.it/retrieve/af828c2b-db56-4c30-8a3b-df22fe5345ce/Bacchin_Francesco.pdf](https://thesis.unipd.it/retrieve/af828c2b-db56-4c30-8a3b-df22fe5345ce/Bacchin_Francesco.pdf)
-
-- Deepak Bhaskar Acharya; Karthigeyan Kuppan; B. Divya. (2025). *Agentic AI: Autonomous Intelligence for Complex Goals—A Comprehensive Survey*. IEEE. [https://ieeexplore.ieee.org/abstract/document/10849561](https://ieeexplore.ieee.org/abstract/document/10849561)
-
-- Shengyue Guan Haoyi Xiong Jindong Wang Jiang Bian Jian-guang Lou. (2025). *Evaluating LLM-based Agents for Multi-Turn Conversations: A Survey*. arXiv. [https://arxiv.org/html/2503.22458v1](https://arxiv.org/html/2503.22458v1)
-
-- VLDB Workshop. (2025). *Towards the Next Generation of Agent Systems: From RAG to Agentic AI*. [https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf](https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf)
-
-- Yu, P. S. (2004). *Graph Indexing: Tree + Delta >= Graph*. [https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf](https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf)
-
-- LlamaIndex. (2025). *Introduction to RAG*. [https://developers.llamaindex.ai/python/framework/understanding/rag/](https://developers.llamaindex.ai/python/framework/understanding/rag/)
-
-- Jingcheng Deng1,2 ∗
-, Zhongtao Jiang,Liang Pang1 Zihao Wei, Liwei Chen Kun Xu, Yang Song, Huawei Shen Xueqi Cheng . (2025). *Following the Autoregressive Nature of LLM Embeddings via Compression and Alignment*. ACL Anthology. [https://aclanthology.org/2025.emnlp-main.639.pdf](https://aclanthology.org/2025.emnlp-main.639.pdf)
-
-- TrustedLLM. (2025). *AutoRegEmbed*. GitHub. [https://github.com/TrustedLLM/AutoRegEmbed](https://github.com/TrustedLLM/AutoRegEmbed)
-
-- LlamaIndex. (2025). *CrewAI + LlamaIndex Cookbook*. [https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/](https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/)
-
-- HKU Data Science Lab. (2025). *RAG-Anything*. GitHub. [https://github.com/hkuds/rag-anything](https://github.com/hkuds/rag-anything)
-
-- OpenDataLab. (2025). *MinerU*. GitHub. [https://github.com/opendatalab/MinerU](https://github.com/opendatalab/MinerU)
-
-- Hanbing Liu1*† Lang Cao2* Yang Li. (2026). *RAG or Learning? Understanding the Limits of LLM Adaptation under Continuous Knowledge Drift in the Real World*. arXiv. [https://arxiv.org/pdf/2604.05096](https://arxiv.org/pdf/2604.05096)
-
-- deepset. (2025). *Haystack Framework Documentation*. [https://docs.haystack.deepset.ai/docs/intro](https://docs.haystack.deepset.ai/docs/intro)
+- Palo Alto Networks. (2024). *What Is Model Context Protocol (MCP)?* https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp  
+- Anthropic. (2025). *Claude SDK for Python*. GitHub. https://github.com/anthropics/anthropic-sdk-python  
+- Model Context Protocol. (2025). *MCP Protocol Python SDK*. GitHub. https://github.com/modelcontextprotocol/python-sdk  
+- FastMCP. (2025). *FastMCP Server Documentation*. https://gofastmcp.com/servers/server  
+- Alex Casella Wayne Wang. (2025). *Performant LLM Agentic Framework for Conversational AI*. arXiv. https://arxiv.org/pdf/2503.06410  
+- Microsoft Research. (2024). *Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks*. https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/  
+- GetStream. (2025). *Top 10 AI Orchestration Tools*. https://getstream.io/blog/best-ai-orchestration-tools/  
+- Bacchin, F. (2024). *The Rise of LLM-powered Agents: Reinventing Workflow Automation with Agentic AI*. Università di Padova. https://thesis.unipd.it/retrieve/af828c2b-db56-4c30-8a3b-df22fe5345ce/Bacchin_Francesco.pdf  
+- Deepak Bhaskar Acharya; Karthigeyan Kuppan; B. Divya. (2025). *Agentic AI: Autonomous Intelligence for Complex Goals—A Comprehensive Survey*. IEEE. https://ieeexplore.ieee.org/abstract/document/10849561  
+- Shengyue Guan Haoyi Xiong Jindong Wang Jiang Bian Jian-guang Lou. (2025). *Evaluating LLM-based Agents for Multi-Turn Conversations: A Survey*. arXiv. https://arxiv.org/html/2503.22458v1  
+- VLDB Workshop. (2025). *Towards the Next Generation of Agent Systems: From RAG to Agentic AI*. https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf  
+- Yu, P. S. (2004). *Graph Indexing: Tree + Delta >= Graph*. https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf  
+- LlamaIndex. (2025). *Introduction to RAG*. https://developers.llamaindex.ai/python/framework/understanding/rag/  
+- Jingcheng Deng1,2, Zhongtao Jiang, Liang Pang1, Zihao Wei, Liwei Chen, Kun Xu, Yang Song, Huawei Shen, Xueqi Cheng. (2025). *Following the Autoregressive Nature of LLM Embeddings via Compression and Alignment*. ACL Anthology. https://aclanthology.org/2025.emnlp-main.639.pdf  
+- TrustedLLM. (2025). *AutoRegEmbed*. GitHub. https://github.com/TrustedLLM/AutoRegEmbed  
+- LlamaIndex. (2025). *CrewAI + LlamaIndex Cookbook*. https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/  
+- HKU Data Science Lab. (2025). *RAG-Anything*. GitHub. https://github.com/hkuds/rag-anything  
+- OpenDataLab. (2025). *MinerU*. GitHub. https://github.com/opendatalab/MinerU  
+- Hanbing Liu1*†, Lang Cao2*, Yang Li. (2026). *RAG or Learning? Understanding the Limits of LLM Adaptation under Continuous Knowledge Drift in the Real World*. arXiv. https://arxiv.org/pdf/2604.05096  
+- deepset. (2025). *Haystack Framework Documentation*. https://docs.haystack.deepset.ai/docs/intro
