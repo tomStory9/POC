@@ -68,7 +68,7 @@
     - [Spécificité d’implémentation](#spécificité-dimplémentation-2)
     - [Exemple : index vectoriel simple avec LlamaIndex](#exemple--index-vectoriel-simple-avec-llamaindex)
   - [Outils RAG Annexe](#outils-rag-annexe)
-    - [MINER U, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm](#miner-u-convertisseur-de-fichier-de-travail--pdf--pptx--docx--xlsx-image-en-format-markdown-ou-json-comprehensible-pour-llm)
+    - [MINERU, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm](#mineru-convertisseur-de-fichier-de-travail--pdf--pptx--docx--xlsx-image-en-format-markdown-ou-json-comprehensible-pour-llm)
   - [Références](#références)
 
 ***
@@ -524,27 +524,63 @@ print(response)
 ```
 ## Outils RAG Annexe 
 ![alt text]({7309EB7F-3323-471D-9DEE-C76C461F45FF}.png)
-### MINER U, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm
+### MINERU, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm
+
+MINERU est un outil de parsing documentaire destiné à convertir des fichiers de travail hétérogènes notamment PDF, DOCX, PPTX, XLSX et images en représentations structurées et interprétables par des modèles de langage, telles que Markdown et JSON. Son objectif principal est de produire une version normalisée du contenu en supprimant les éléments non essentiels à l’analyse, comme les en-têtes, pieds de page, numéros de page ou certaines redondances de mise en forme, tout en conservant les éléments sémantiquement utiles tels que les titres, paragraphes, listes, tableaux, figures, légendes et équations. Dans une chaîne de traitement orientée LLM, cette approche permet de réduire le volume de tokens lors de l’indexation et de l’embedding, tout en améliorant la qualité de l’extraction, de la recherche et de la restitution, grâce à une structuration plus fidèle de l’information source.
+
+Sur le plan fonctionnel, MINERU repose sur une logique de parsing documentaire qui combine analyse de mise en page, reconstitution de l’ordre de lecture, extraction des blocs de contenu et conversion vers des formats machine-readable. Le système identifie les différentes zones d’un document texte, tableaux, images, légendes, notes, formules puis réorganise ces éléments selon un ordre de lecture exploitable, y compris dans des mises en page complexes ou multicolonnes. Il peut également détecter les PDF scannés ou dégradés et activer automatiquement une phase d’OCR, avec prise en charge d’un grand nombre de langues, afin d’assurer une extraction solide même lorsque le texte n’est pas directement accessible.
+```bash
+uv venv mineru --python 3.12
+source mineru/bin/activate
+uv pip install -U "magic-pdf[full]"
+```
+
+```bash
+mineru -p ./documents/rapport.pdf -o ./output --dump-content-list
+```
+
+Mineru est aussi accessible en ligne à l'adresse suivante : <https://mineru.net/>
 ![alt text](image-3.png)
 ![alt text]({E6D4B811-B3BB-4450-8C2A-C8479A34D18D}.png)
 
 ## Références
-- [What Is Model Context Protocol (MCP)?](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
-- [CLAUDE SDK FOR PYTHON](https://github.com/anthropics/anthropic-sdk-python)
-- [MCP PROTOCOL SDK PYTHON](https://github.com/modelcontextprotocol/python-sdk)
-- [FASTMCP](https://gofastmcp.com/servers/server)
-- [Performant LLM Agentic Framework for Conversational AI](https://arxiv.org/pdf/2503.06410)
-- [Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks](https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/)
-- [Top 10 orchestration-Tools](https://getstream.io/blog/best-ai-orchestration-tools/)
-- [The Rise of LLM-powered Agents: Reinventing Workflow Automation with Agentic AI](https://thesis.unipd.it/retrieve/af828c2b-db56-4c30-8a3b-df22fe5345ce/Bacchin_Francesco.pdf) (page 42 prompt, le reste aussi)
-- [Agentic AI: Autonomous Intelligence for Complex Goals—A Comprehensive Survey](https://ieeexplore.ieee.org/abstract/document/10849561)
-- [Evaluating LLM-based Agents for Multi-Turn Conversations: A Survey](https://arxiv.org/html/2503.22458v1)
-- [Towards the Next Generation of Agent Systems: From RAG to Agentic AI](https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf)
-- [Graph Indexing: Tree + Delta >= Graph](https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf)
-- [Introduction to RAG](https://developers.llamaindex.ai/python/framework/understanding/rag/)
-- [Following the Autoregressive Nature of LLM Embeddings via Compression and Alignment](https://aclanthology.org/2025.emnlp-main.639.pdf)
-- [AUTOREG CODE](https://github.com/TrustedLLM/AutoRegEmbed)
-- [COOKBOOK CREWAI + LLAMAINDEX](https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/)
-- [rag-anything](https://github.com/hkuds/rag-anything)
-- [Mineru](https://github.com/opendatalab/MinerU)
-- [RAG or Learning? Understanding the Limits of LLM Adaptation under Continuous Knowledge Drift in the Real World](https://arxiv.org/pdf/2604.05096)
+- Palo Alto Networks. (2024). *What Is Model Context Protocol (MCP)?* [https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp](https://www.paloaltonetworks.com/cyberpedia/what-is-model-context-protocol-mcp)
+
+- Anthropic. (2025). *Claude SDK for Python*. GitHub. [https://github.com/anthropics/anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python)
+
+- Model Context Protocol. (2025). *MCP Protocol Python SDK*. GitHub. [https://github.com/modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
+
+- FastMCP. (2025). *FastMCP Server Documentation*. [https://gofastmcp.com/servers/server](https://gofastmcp.com/servers/server)
+
+- Alex Casella Wayne Wang. (2025). *Performant LLM Agentic Framework for Conversational AI*. arXiv. [https://arxiv.org/pdf/2503.06410](https://arxiv.org/pdf/2503.06410)
+
+- Microsoft Research. (2024). *Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks*. [https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/](https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/)
+
+- GetStream. (2025). *Top 10 AI Orchestration Tools*. [https://getstream.io/blog/best-ai-orchestration-tools/](https://getstream.io/blog/best-ai-orchestration-tools/)
+
+- Bacchin, F. (2024). *The Rise of LLM-powered Agents: Reinventing Workflow Automation with Agentic AI*. Università di Padova. [https://thesis.unipd.it/retrieve/af828c2b-db56-4c30-8a3b-df22fe5345ce/Bacchin_Francesco.pdf](https://thesis.unipd.it/retrieve/af828c2b-db56-4c30-8a3b-df22fe5345ce/Bacchin_Francesco.pdf)
+
+- Deepak Bhaskar Acharya; Karthigeyan Kuppan; B. Divya. (2025). *Agentic AI: Autonomous Intelligence for Complex Goals—A Comprehensive Survey*. IEEE. [https://ieeexplore.ieee.org/abstract/document/10849561](https://ieeexplore.ieee.org/abstract/document/10849561)
+
+- Shengyue Guan Haoyi Xiong Jindong Wang Jiang Bian Jian-guang Lou. (2025). *Evaluating LLM-based Agents for Multi-Turn Conversations: A Survey*. arXiv. [https://arxiv.org/html/2503.22458v1](https://arxiv.org/html/2503.22458v1)
+
+- VLDB Workshop. (2025). *Towards the Next Generation of Agent Systems: From RAG to Agentic AI*. [https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf](https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/LLM+Graph/LLMGraph-8.pdf)
+
+- Yu, P. S. (2004). *Graph Indexing: Tree + Delta >= Graph*. [https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf](https://www.researchgate.net/profile/Philip-Yu-3/publication/221310199_Graph_Indexing_Tree_Delta_Graph/links/553953a80cf2239f4e7d9021/Graph-Indexing-Tree-Delta-Graph.pdf)
+
+- LlamaIndex. (2025). *Introduction to RAG*. [https://developers.llamaindex.ai/python/framework/understanding/rag/](https://developers.llamaindex.ai/python/framework/understanding/rag/)
+
+- Jingcheng Deng1,2 ∗
+, Zhongtao Jiang,Liang Pang1 Zihao Wei, Liwei Chen Kun Xu, Yang Song, Huawei Shen Xueqi Cheng . (2025). *Following the Autoregressive Nature of LLM Embeddings via Compression and Alignment*. ACL Anthology. [https://aclanthology.org/2025.emnlp-main.639.pdf](https://aclanthology.org/2025.emnlp-main.639.pdf)
+
+- TrustedLLM. (2025). *AutoRegEmbed*. GitHub. [https://github.com/TrustedLLM/AutoRegEmbed](https://github.com/TrustedLLM/AutoRegEmbed)
+
+- LlamaIndex. (2025). *CrewAI + LlamaIndex Cookbook*. [https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/](https://developers.llamaindex.ai/python/examples/cookbooks/crewai_llamaindex/)
+
+- HKU Data Science Lab. (2025). *RAG-Anything*. GitHub. [https://github.com/hkuds/rag-anything](https://github.com/hkuds/rag-anything)
+
+- OpenDataLab. (2025). *MinerU*. GitHub. [https://github.com/opendatalab/MinerU](https://github.com/opendatalab/MinerU)
+
+- Hanbing Liu1*† Lang Cao2* Yang Li. (2026). *RAG or Learning? Understanding the Limits of LLM Adaptation under Continuous Knowledge Drift in the Real World*. arXiv. [https://arxiv.org/pdf/2604.05096](https://arxiv.org/pdf/2604.05096)
+
+- deepset. (2025). *Haystack Framework Documentation*. [https://docs.haystack.deepset.ai/docs/intro](https://docs.haystack.deepset.ai/docs/intro)
