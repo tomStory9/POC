@@ -618,7 +618,7 @@ Ce pipeline met en évidence la séparation des responsabilités : le DocumentSt
 ### MINERU, convertisseur de fichier de travail ( pdf , pptx , docx , xlsx, image) en format markdown ou json comprehensible pour llm
 
 MINERU est un outil de parsing documentaire destiné à convertir des fichiers de travail hétérogènes notamment PDF, DOCX, PPTX, XLSX et images en représentations structurées et interprétables par des modèles de langage, telles que Markdown et JSON. Son objectif principal est de produire une version normalisée du contenu en supprimant les éléments non essentiels à l’analyse, comme les en-têtes, pieds de page, numéros de page ou certaines redondances de mise en forme, tout en conservant les éléments sémantiquement utiles tels que les titres, paragraphes, listes, tableaux, figures, légendes et équations. Dans une chaîne de traitement orientée LLM, cette approche permet de réduire le volume de tokens lors de l’indexation et de l’embedding, tout en améliorant la qualité de l’extraction, de la recherche et de la restitution, grâce à une structuration plus fidèle de l’information source.
-![alt text](image-4.png)
+![alt text](image-3.png)
 MINERU repose sur une logique de parsing documentaire qui combine analyse de mise en page, reconstitution de l’ordre de lecture, extraction des blocs de contenu et conversion vers des formats machine-readable. Le système identifie les différentes zones d’un document (texte, tableaux, images, légendes, notes, formules) puis réorganise ces éléments selon un ordre de lecture exploitable, y compris dans des mises en page complexes ou multicolonnes. Il peut également détecter les PDF scannés ou dégradés et activer automatiquement une phase d’OCR, avec prise en charge d’un grand nombre de langues, afin d’assurer une extraction solide même lorsque le texte n’est pas directement accessible.
 ![alt text]({7309EB7F-3323-471D-9DEE-C76C461F45FF}.png)
 ```bash
@@ -632,7 +632,7 @@ mineru -p ./documents/rapport.pdf -o ./output --dump-content-list
 ```
 
 Mineru est aussi accessible en ligne à l'adresse suivante : https://mineru.net/
-![alt text](image-3.png)
+
 ![alt text]({E6D4B811-B3BB-4450-8C2A-C8479A34D18D}.png)
 
 ## Références
